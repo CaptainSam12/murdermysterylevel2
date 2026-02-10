@@ -3,7 +3,7 @@ import Player from './MansionLogic/Player.js';
 import GameObject from './MansionLogic/GameObject.js';
 import Npc from "./MansionLogic/Npc.js";
 
-console.log("🥥 MansionLevel3 loaded!");
+console.log("🥥 MurderMysteryLevel2 loaded!");
 
 
 // ===============================
@@ -117,9 +117,9 @@ class RollingObject extends GameObject {
 
 
 // ===============================
-//          LEVEL 3 CLASS
+//     MURDER MYSTERY LEVEL 2
 // ===============================
-class MansionLevel3 {
+class MurderMysteryLevel2 {
   constructor(gameEnv) {
     this.gameEnv = gameEnv;
 
@@ -137,11 +137,11 @@ class MansionLevel3 {
     this.witnessSpawned = false;
 
     // ===============================
-    // Background
+    // Background (Chapter 2 Run Map)
     // ===============================
     const bgData = {
       name: "background",
-      src: gameEnv.path + "/images/mansionGame/stairs_lvl3.png",
+      src: gameEnv.path + "/assets/images/Ch2 Run map.png",
       pixels: { width: 1038, height: 580 },
       mode: "cover",
     };
@@ -181,7 +181,7 @@ class MansionLevel3 {
   //     POWER UP COLLECTION
   // ===============================
   collectPowerUp() {
-    console.log("🍹 Speed boost!");
+    console.log("🍹 Speed boost collected!");
 
     this.boostTimer = 300;
 
@@ -202,7 +202,7 @@ class MansionLevel3 {
           speed: 9,
           level: this,
           isPowerUp: false,
-          imageSrc: this.gameEnv.path + "/images/mansionGame/coconut.png",
+          imageSrc: this.gameEnv.path + "/assets/images/coconut.png",
         },
         this.gameEnv
       )
@@ -216,7 +216,7 @@ class MansionLevel3 {
           speed: 7,
           level: this,
           isPowerUp: true,
-          imageSrc: this.gameEnv.path + "/images/mansionGame/pinacolada.png",
+          imageSrc: this.gameEnv.path + "/assets/images/pina-colada.png",
         },
         this.gameEnv
       )
@@ -266,7 +266,7 @@ class MansionLevel3 {
     if (this.gameEnded) return;
 
     this.gameEnded = true;
-    alert("💥 You got bonked by a coconut!");
+    alert("💥 You got hit by a rolling coconut!");
   }
 
   // ===============================
@@ -276,7 +276,7 @@ class MansionLevel3 {
     if (this.gameEnded) return;
 
     this.gameEnded = true;
-    console.log("🏆 Survived! Reward time...");
+    console.log("🏆 You survived Level 2!");
 
     // Remove coconuts
     this.gameEnv.gameObjects = this.gameEnv.gameObjects.filter(
@@ -288,7 +288,7 @@ class MansionLevel3 {
   }
 
   // ===============================
-  //       POT OF GOLD (NPC STYLE)
+  //       POT OF GOLD NPC
   // ===============================
   spawnPotOfGold() {
     if (this.rewardSpawned) return;
@@ -299,20 +299,17 @@ class MansionLevel3 {
     const potData = {
       id: "PotOfGold",
 
-      src: this.gameEnv.path + "/images/mansionGame/pot_gold.png",
+      src: this.gameEnv.path + "/assets/images/pot-of-gold.png",
 
       dialogues: [
         "You found the Pot of Gold! 🪙",
-        "Press E again to speak with the witness..."
+        "Press E again to meet the witness..."
       ],
 
       interact: () => {
         console.log("✨ Pot collected!");
 
-        // Remove pot NPC
         pot.destroy();
-
-        // Spawn witness NPC
         this.spawnWitnessNpc();
       }
     };
@@ -332,12 +329,12 @@ class MansionLevel3 {
     if (this.witnessSpawned) return;
     this.witnessSpawned = true;
 
-    console.log("🧍 Witness NPC appeared!");
+    console.log("🧍 Witness appeared!");
 
     const witnessData = {
       id: "Witness",
 
-      src: this.gameEnv.path + "/images/mansionGame/witness.png",
+      src: this.gameEnv.path + "/assets/images/pirate.png",
 
       dialogues: [
         "Psst... I saw everything.",
@@ -360,8 +357,9 @@ class MansionLevel3 {
   }
 
   destroy() {
-    console.log("🧹 MansionLevel3 cleaned up.");
+    console.log("🧹 MurderMysteryLevel2 cleaned up.");
   }
 }
 
-export default MansionLevel3;
+export default MurderMysteryLevel2;
+
