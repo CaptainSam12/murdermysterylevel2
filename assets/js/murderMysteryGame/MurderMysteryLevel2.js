@@ -147,11 +147,14 @@ class MurderMysteryLevel2 {
     };
 
     // ===============================
-    // Player
+    // Player (ONLY CHANGE IS HERE)
     // ===============================
     const playerData = {
       id: "Spook",
-      src: gameEnv.path + "/images/gamify/spookMcWalk.png",
+
+      // ✅ Player sprite is now Red Goblin
+      src: gameEnv.path + "/assets/images/red goblin.png",
+
       SCALE_FACTOR: 6,
       STEP_FACTOR: this.defaultSpeed,
       ANIMATION_RATE: 10,
@@ -177,9 +180,6 @@ class MurderMysteryLevel2 {
     ];
   }
 
-  // ===============================
-  //     POWER UP COLLECTION
-  // ===============================
   collectPowerUp() {
     console.log("🍹 Speed boost collected!");
 
@@ -192,9 +192,6 @@ class MurderMysteryLevel2 {
     if (player) player.STEP_FACTOR = this.boostSpeed;
   }
 
-  // ===============================
-  //         SPAWN OBJECTS
-  // ===============================
   spawnCoconut() {
     this.gameEnv.gameObjects.push(
       new RollingObject(
@@ -223,16 +220,12 @@ class MurderMysteryLevel2 {
     );
   }
 
-  // ===============================
-  //            UPDATE
-  // ===============================
   update() {
     if (this.gameEnded) return;
 
     this.score++;
     this.spawnTimer++;
 
-    // Spawn rolling objects
     if (this.spawnTimer > 50) {
       this.spawnTimer = 0;
 
@@ -240,7 +233,6 @@ class MurderMysteryLevel2 {
       else this.spawnCoconut();
     }
 
-    // Boost timer
     if (this.boostTimer > 0) {
       this.boostTimer--;
 
@@ -253,15 +245,11 @@ class MurderMysteryLevel2 {
       }
     }
 
-    // WIN CONDITION
     if (this.score > 2000) {
       this.winGame();
     }
   }
 
-  // ===============================
-  //          GAME OVER
-  // ===============================
   gameOver() {
     if (this.gameEnded) return;
 
@@ -269,27 +257,19 @@ class MurderMysteryLevel2 {
     alert("💥 You got hit by a rolling coconut!");
   }
 
-  // ===============================
-  //             WIN
-  // ===============================
   winGame() {
     if (this.gameEnded) return;
 
     this.gameEnded = true;
     console.log("🏆 You survived Level 2!");
 
-    // Remove coconuts
     this.gameEnv.gameObjects = this.gameEnv.gameObjects.filter(
       obj => !(obj instanceof RollingObject)
     );
 
-    // Spawn reward pot
     this.spawnPotOfGold();
   }
 
-  // ===============================
-  //       POT OF GOLD NPC
-  // ===============================
   spawnPotOfGold() {
     if (this.rewardSpawned) return;
     this.rewardSpawned = true;
@@ -322,9 +302,6 @@ class MurderMysteryLevel2 {
     this.gameEnv.gameObjects.push(pot);
   }
 
-  // ===============================
-  //       WITNESS NPC (ALIBI)
-  // ===============================
   spawnWitnessNpc() {
     if (this.witnessSpawned) return;
     this.witnessSpawned = true;
@@ -362,4 +339,5 @@ class MurderMysteryLevel2 {
 }
 
 export default MurderMysteryLevel2;
+
 
