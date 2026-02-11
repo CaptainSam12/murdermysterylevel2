@@ -1,7 +1,7 @@
-import GameEnvBackground from './MansionLogic/GameEnvBackground.js';
-import Player from './MansionLogic/Player.js';
-import GameObject from './MansionLogic/GameObject.js';
-import Npc from "./MansionLogic/Npc.js";
+import GameEnvBackground from './muderMysteryGameLogic/GameEnvBackground.js';
+import Player from './muderMysteryGameLogic/Player.js';
+import GameObject from './muderMysteryGameLogic/GameObject.js';
+import Npc from "./muderMysteryGameLogic/Npc.js";
 
 console.log("🥥 MurderMysteryLevel2 loaded!");
 
